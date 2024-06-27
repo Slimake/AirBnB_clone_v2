@@ -39,7 +39,9 @@ class test_fileStorage(unittest.TestCase):
         """ __objects is properly returned """
         new = BaseModel()
         temp = storage.all()
+        temp2 = storage.all(BaseModel)
         self.assertIsInstance(temp, dict)
+        self.assertIsInstance(temp2, dict)
 
     def test_base_model_instantiation(self):
         """ File is not created on BaseModel save """
@@ -141,3 +143,12 @@ class test_fileStorage(unittest.TestCase):
         new = BaseModel()
         new.__dict__.update(param)
         self.assertIsInstance(param['latitude'], float)
+
+    def test_delete(self):
+        """ obj is properly deleted in __objects """
+        new = BaseModel()
+        storage.delete(new)
+        _cls = new.to_dict()['__class__']
+        _id = new.to_dict()['id']
+        key = _cls + '.' + _id
+        self.assertNotIn(key, storage.all())
