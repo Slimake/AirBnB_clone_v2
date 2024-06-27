@@ -105,5 +105,39 @@ class test_fileStorage(unittest.TestCase):
     def test_storage_var_created(self):
         """ FileStorage object storage created """
         from models.engine.file_storage import FileStorage
-        print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+    def test_parameter_key(self):
+        """ Parameter key check """
+        param = {'name': 'My_little_house'}
+        new = BaseModel()
+        new.__dict__.update(param)
+        self.assertTrue('name', storage.all().keys())
+
+    def test_parameter_value(self):
+        """ Parameter value check """
+        param = {'name': 'My_little_house'}
+        new = BaseModel()
+        new.__dict__.update(param)
+        self.assertTrue(param['name'], storage.all().values())
+
+    def test_paramter_str_value(self):
+        """ Parameter value str type check """
+        param = {'name': 'My_little_house'}
+        new = BaseModel()
+        new.__dict__.update(param)
+        self.assertIsInstance(param['name'], str)
+
+    def test_paramter_int_value(self):
+        """ Parameter value int type check """
+        param = {'age': 30}
+        new = BaseModel()
+        new.__dict__.update(param)
+        self.assertIsInstance(param['age'], int)
+
+    def test_paramter_float_value(self):
+        """ Parameter value float type check """
+        param = {'latitude': 342.232}
+        new = BaseModel()
+        new.__dict__.update(param)
+        self.assertIsInstance(param['latitude'], float)
