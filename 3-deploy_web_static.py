@@ -21,17 +21,17 @@ def do_pack():
 
         # Run fabric locally
         local("mkdir -p versions")
-        local("tar -cvzf {} web_static".format(filename))
+        local("tar -cvzf {} web_static/".format(filename))
         return filename
     except Exception:
-        return False
+        return None
 
 
 def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
     path = Path(archive_path)
-    if not path.exists():
-        return None
+    if path.exists() is False:
+        return False
 
     try:
         filename = archive_path.split("/")[-1]
