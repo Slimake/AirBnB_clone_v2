@@ -9,7 +9,7 @@ env.hosts = ['ubuntu@35.153.194.26', 'ubuntu@18.210.13.137']
 
 def do_pack():
     """generate .tgz archive of web_static/ folder"""
-    timenow = strftime("%Y%M%d%H%M%S")
+    timenow = strftime("%Y%m%d%H%M%S")
     try:
         local("mkdir -p versions")
         filename = "versions/web_static_{}.tgz".format(timenow)
@@ -23,7 +23,7 @@ def do_deploy(archive_path):
     """
     Deploy archive to web server
     """
-    if Path(archive_path) is False:
+    if Path(archive_path).exists() is False:
         return False
     try:
         filename = archive_path.split("/")[-1]
