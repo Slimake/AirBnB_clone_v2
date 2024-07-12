@@ -20,7 +20,7 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data
 
 # Add location /hbnb_static/ block directive to /etc/nginx/sites-available/default
-sudo sed -i '53i \\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
+sudo sed -i '53i \\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
 # Restart nginx
 sudo service nginx restart
