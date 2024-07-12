@@ -16,11 +16,11 @@ def do_pack():
     time_now = strftime("%Y%m%d%H%M%S")
     try:
         # Create filename
-        filename = 'web_static_' + time_now
+        filename = "versions/web_static_{}.tgz".format(time_now)
 
         # Run fabric locally
         local("mkdir -p versions")
-        local("tar -cvzf versions/{}.tgz web_static".format(filename))
+        local("tar -cvzf {}.tgz web_static".format(filename))
         return filename
     except Exception:
         return None
