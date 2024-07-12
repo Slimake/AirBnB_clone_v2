@@ -31,7 +31,7 @@ def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
     path = Path(archive_path)
     if not path.exists():
-        return False
+        return None
 
     try:
         filename = archive_path.split("/")[-1]
@@ -69,6 +69,9 @@ def deploy():
     """Call do_pack and do_deploy function"""
     # Archive
     archive_path = do_pack()
+    if archive_path is None:
+        return False
 
     # Deploy to web servers
-    do_deploy(archive_path)
+    success = do_deploy(archive_path)
+    return success
