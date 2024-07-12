@@ -44,22 +44,22 @@ def do_deploy(archive_path):
         # cd into /tmp and put the archive_path file into it
         with cd("/tmp"):
             # Create folder
-            run("mkdir -p {}".format(data_path))
+            sudo("mkdir -p {}".format(data_path))
             # Unpack the archive_path file to destination
-            run("tar -zxf {0} -C {1}".format(filename, data_path))
+            sudo("tar -zxf {0} -C {1}".format(filename, data_path))
 
             # Delete the archive from the web server
-            run("rm {}".format(filename))
+            sudo("rm {}".format(filename))
 
             # Move files one level up
-            run("mv {0}web_static/* {0}".format(data_path))
+            sudo("mv {0}web_static/* {0}".format(data_path))
 
             # Delete folder
-            run("rm -rf {}web_static/".format(data_path))
+            sudo("rm -rf {}web_static/".format(data_path))
 
             # Delete and recreate the symbolic link /data/web_static/current
-            run("rm -rf {}".format(symlink))
-            run("ln -s {0} {1}".format(data_path, symlink))
+            sudo("rm -rf {}".format(symlink))
+            sudo("ln -s {0} {1}".format(data_path, symlink))
         return True
     except Exception:
         return False
