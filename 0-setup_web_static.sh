@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# A Bash script that sets up your web servers for the deployment of Airbinb_clone_v2 web_static
+# A Bash script that sets up your web servers for the deployment of web_static
 
 # Install nginx if it's not already installed
 sudo apt-get update
@@ -20,7 +20,7 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data
 
 # Add location /hbnb_static/ block directive to /etc/nginx/sites-available/default
-sed -i '53i \\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
+sudo sed -i '53i \\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
 
 # Restart nginx
 sudo service nginx restart
