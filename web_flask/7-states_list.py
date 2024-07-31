@@ -19,7 +19,6 @@ def states_list():
     """Display a HTML page"""
     states = [s for s in storage.all(classes['State']).values()]
 
-
     return render_template('7-states_list.html', states=states)
 
 
