@@ -4,6 +4,7 @@
 """
 from flask import Flask, render_template
 from models import storage, classes
+from models import *
 
 app = Flask(__name__)
 
@@ -23,4 +24,4 @@ def states_list():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
