@@ -15,7 +15,7 @@ class FileStorage:
         if cls:  # cls is not empty
             for key, value in FileStorage.__objects.items():
                 if cls.__name__ == value.to_dict()['__class__']:
-                    objs.update({key: value.to_dict()})
+                    objs.update({key: value})
             return objs
         return FileStorage.__objects
 
@@ -53,3 +53,7 @@ class FileStorage:
             if key in self.all().keys():
                 del self.all()[key]
             self.save()
+
+    def close(self):
+        """Call reload method deserializing the JSON file to objects"""
+        self.reload()
